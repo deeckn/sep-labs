@@ -1,5 +1,4 @@
 import sys
-from turtle import update
 from PySide6.QtWidgets import (
     QApplication, QWidget, QLabel, QPushButton,
     QLineEdit, QVBoxLayout, QHBoxLayout, QTableWidget,
