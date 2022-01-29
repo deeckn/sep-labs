@@ -67,8 +67,6 @@ class DatabaseDemo(QWidget):
         self.ui.employee_table.setRowCount(len(self.employee_list))
         self.__append_employee_table(employee)
 
-        print(len(self.employee_list))
-
     def __get_input(self) -> Employee:
         """Retreives the input from the form"""
         first_name = self.ui.first_name_input.text()
