@@ -64,6 +64,8 @@ class DatabaseDemo(QWidget):
             QMessageBox.warning(self, "Invalid Form Entry",
                                 "Please fill in all input boxes")
             return
+
+        self.employee_list.append(employee)
         self.ui.employee_table.setRowCount(len(self.employee_list))
         self.__append_employee_table(employee)
 
@@ -71,13 +73,18 @@ class DatabaseDemo(QWidget):
         """Retreives the input from the form"""
         first_name = self.ui.first_name_input.text()
         last_name = self.ui.last_name_input.text()
-        age = self.ui.age_input.text()
-        salary = self.ui.salary_input.text()
+
+        try:
+            age = int(self.ui.age_input.text())
+            salary = int(self.ui.salary_input.text())
+        except ValueError:
+            QMessageBox.warning(self, "Invalid Form Entry",
+                                "Please fill in valid data")
+
         if not (first_name and last_name and age and salary):
             return None
 
-        employee = Employee(first_name, last_name, int(age), int(salary))
-        self.employee_list.append(employee)
+        employee = Employee(first_name, last_name, age, salary)
         return employee
 
     def __append_employee_table(self, employee: Employee) -> None:
