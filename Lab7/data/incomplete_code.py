@@ -26,22 +26,21 @@ class Walk(Transportation):
 
 
 class Taxi(Transportation):
-   
-   def __init__(self, start, end, distance):
-      Transportation.__init__(self, start, end, distance)
-   
-   def find_cost(self):
-      return self.distance * 40
+
+    def __init__(self, start, end, distance):
+        Transportation.__init__(self, start, end, distance)
+
+    def find_cost(self):
+        return self.distance * 40
 
 
 class Train(Transportation):
-    def __init__(self, start, end, cost, stations):
+    def __init__(self, start, end, stations):
         Transportation.__init__(self, start, end, None)
         self.__stations = stations
-        self.__cost = cost
 
     def find_cost(self):
-        return self.__stations * self.__cost
+        return self.__stations * 5
 
 
 # main program
