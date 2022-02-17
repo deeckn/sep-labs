@@ -3,7 +3,7 @@ from abc import ABC, abstractmethod
 
 class Transportation(ABC):
     """Abstract base class"""
-
+    @abstractmethod
     def __init__(self, start, end, distance):
         if self.__class__ == Transportation:
             raise NotImplementedError
@@ -18,20 +18,32 @@ class Transportation(ABC):
 
 
 class Walk(Transportation):
-
     def __init__(self, start, end, distance):
         Transportation.__init__(self, start, end, distance)
 
     def find_cost(self):
+        """Return the cost for walking"""
         return 0
 
 
 class Taxi(Transportation):
-    pass
+    def __init__(self, start, end, distance):
+      Transportation.__init__(self, start, end, distance)
+   
+    def find_cost(self):
+        """Return the cost for taking the Taxi"""
+        return self.distance * 40
 
 
 class Train(Transportation):
-    pass
+    def __init__(self, start, end, cost, stations):
+        Transportation.__init__(self, start, end, None)
+        self.__stations = stations
+        self.__cost = cost
+
+    def find_cost(self):
+        """Return the cost for taking the Train"""
+        return self.__stations * self.__cost
 
 
 # main program

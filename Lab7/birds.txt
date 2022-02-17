@@ -49,6 +49,7 @@ Starling
 Stork
 Swallow
 Swan
+Turkey
 Vulture
 Woodcock
 Woodpecker
