@@ -44,6 +44,23 @@ class PaintWindow(QWidget):
         canvasPainter = QPainter(self)
         canvasPainter.drawImage(self.rect(), self.image, self.image.rect())
         
-# SPP - Fay - Delete this
+        
+class SPP(QWidget):
+    def __init__(self) -> None:
+        QWidget.__init__(self, None)
+        self.setFixedWidth(500)
+        font = QFont("Poppins")
+        font.setPixelSize(20)
+        self.drawWindow = PaintWindow(self)
+        label = QLabel(self)
+        label.setText("Drag the mouse to draw")
+        label.setAlignment(Qt.AlignCenter)
+        label.setFont(font)
+        label.setGeometry(0, 250, 500, 30)
+        self.clear_bt = QPushButton(self)
+        self.clear_bt.setText("Clear")
+        self.clear_bt.setFont(font)
+        self.clear_bt.setGeometry(0, 280, 500, 30)
+        self.clear_bt.clicked.connect(self.drawWindow.clear)
 
 # Main - Kris - Delete this
