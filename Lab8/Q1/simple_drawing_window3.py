@@ -6,27 +6,33 @@ from PySide6.QtGui import *
 class SimpleDrawingWindow3(QWidget):
     def __init__(self):
         QWidget.__init__(self, None)
-        self.setWindowTitle("Simple Drawing")
-        self.rabbit = QPixmap("images/rabbit.png")
+
+    def draw_triangle(self, p: QPainter, x: int, y: int, w: int, h: int, flip=False):
+        if flip:
+            p.drawPolygon([QPoint(x, y), QPoint(x+(w/2), y+h),
+                           QPoint(x+w, y), QPoint(x, y)])
+        else:
+            p.drawPolygon([QPoint(x, y), QPoint(x+(w/2), y-h),
+                           QPoint(x+w, y), QPoint(x, y)])
 
     def paintEvent(self, e):
         p = QPainter()
         p.begin(self)
-
         p.setPen(QColor(0, 0, 0))
-        p.setBrush(QColor(0, 127, 0))
-        p.drawPolygon([
-            QPoint(70, 100), QPoint(100, 110),
-            QPoint(130, 100), QPoint(100, 150),
-        ])
+        x = 250
+        y = 250
+        w = 100
+        h = 100
+        colors = [Qt.yellow, Qt.blue, Qt.green, Qt.red]
 
-        p.setPen(QColor(255, 127, 0))
-        p.setBrush(QColor(255, 127, 0))
-        p.drawPie(50, 150, 100, 100, 0, 180 * 16)
+        # Draw normal Triangle
+        for i in range(4):
+            p.setBrush(colors[i])
+            self.draw_triangle(p, x+(25*i), y, w, h)
 
-        p.drawPolygon(
-            [QPoint(50, 200), QPoint(150, 200), QPoint(100, 400), ]
-        )
+        # Draw flipped Triangle
+        for i in range(4):
+            p.setBrush(colors[3-i])
+            self.draw_triangle(p, x+(25*i), y, w, h, True)
 
-        p.drawPixmap(QRect(200, 100, 320, 320), self.rabbit)
         p.end()
