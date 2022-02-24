@@ -6,27 +6,21 @@ from PySide6.QtGui import *
 class SimpleDrawingWindow1(QWidget):
     def __init__(self):
         QWidget.__init__(self, None)
-        self.setWindowTitle("Simple Drawing")
-        self.rabbit = QPixmap("images/rabbit.png")
+        self.setWindowTitle("Amazing Hexagon")
 
     def paintEvent(self, e):
         p = QPainter()
         p.begin(self)
-
-        p.setPen(QColor(0, 0, 0))
-        p.setBrush(QColor(0, 127, 0))
+        p.setPen(QColor(9, 125, 214))
+        p.setBrush(QColor(9, 125, 214))
+        shift_x = 300
+        shift_y = 200
         p.drawPolygon([
-            QPoint(70, 100), QPoint(100, 110),
-            QPoint(130, 100), QPoint(100, 150),
+            QPoint(-150+shift_x, 0+shift_y),
+            QPoint(-75+shift_x, 100+shift_y),
+            QPoint(75+shift_x, 100+shift_y),
+            QPoint(150+shift_x, 0+shift_y),
+            QPoint(75+shift_x, -100+shift_y),
+            QPoint(-75+shift_x, -100+shift_y)
         ])
-
-        p.setPen(QColor(255, 127, 0))
-        p.setBrush(QColor(255, 127, 0))
-        p.drawPie(50, 150, 100, 100, 0, 180 * 16)
-
-        p.drawPolygon(
-            [QPoint(50, 200), QPoint(150, 200), QPoint(100, 400), ]
-        )
-
-        p.drawPixmap(QRect(200, 100, 320, 320), self.rabbit)
         p.end()
