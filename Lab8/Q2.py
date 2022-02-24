@@ -3,6 +3,7 @@ from PySide6.QtCore import *
 from PySide6.QtWidgets import *
 from PySide6.QtGui import *
 
+
 class PaintWindow(QWidget):
     def __init__(self, parent) -> None:
         QWidget.__init__(self, parent)
@@ -43,8 +44,8 @@ class PaintWindow(QWidget):
     def paintEvent(self, event):
         canvasPainter = QPainter(self)
         canvasPainter.drawImage(self.rect(), self.image, self.image.rect())
-        
-        
+
+
 class SPP(QWidget):
     def __init__(self) -> None:
         QWidget.__init__(self, None)
@@ -63,4 +64,9 @@ class SPP(QWidget):
         self.clear_bt.setGeometry(0, 280, 500, 30)
         self.clear_bt.clicked.connect(self.drawWindow.clear)
 
-# Main - Kris - Delete this
+
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    view = SPP()
+    view.show()
+    sys.exit(app.exec())
