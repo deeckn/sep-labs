@@ -1,39 +1,39 @@
-import turtle
+from turtle import *
 
-class Pole:
-    def __init__(self,name="",xpos=0,ypos=0,thick=10,length=100):
+
+class Pole(object):
+    def __init__(self, name="", x_pos=0, y_pos=0, thick=10, length=100):
         self.pname = name
         self.stack = []
         self.toppos = 0
-        self.pxpos = xpos
-        self.pypos = ypos
+        self.px_pos = x_pos
+        self.py_pos = y_pos
         self.pthick = thick
         self.plength = length
 
-    def showpole(self):
-        turtle.lt(90)
-        turtle.penup()
-        turtle.goto(self.pxpos,self.pypos)
-        turtle.pendown()
-        turtle.rt(90)
+    def show_pole(self):
+        left(90)
+        penup()
+        goto(self.px_pos, self.py_pos)
+        pendown()
+        rt(90)
         for x in range(2):
-            turtle.fd(self.pthick/2)
-            turtle.lt(90)
-            turtle.fd(self.plength)
-            turtle.lt(90)
-            turtle.fd(self.pthick/2)
+            forward(self.pthick/2)
+            left(90)
+            forward(self.plength)
+            left(90)
+            forward(self.pthick/2)
 
-    def pushdisk(self,disk):
-        disk.newpos(self.pxpos,self.toppos)
-        disk.showdisk()
+    def push_disk(self, disk):
+        disk.new_pos(self.px_pos, self.toppos)
+        disk.show_disk()
         self.stack.append(disk)
-        self.toppos += disk.dheight
+        self.toppos += disk.disk_height
         self.toppos += 1
 
-
-    def popdisk(self):
+    def pop_disk(self):
         d = self.stack.pop()
-        d.cleardisk()
+        d.clear_disk()
         self.toppos -= 1
-        self.toppos -= d.dheight
+        self.toppos -= d.disk_height
         return d
